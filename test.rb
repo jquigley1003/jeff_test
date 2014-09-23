@@ -1,3 +1,5 @@
+require 'pry'
+
 puts "Test Message"
 puts "We're running this in the terminal"
 
@@ -8,5 +10,6 @@ puts "Hey #{user_name}"
 puts "how are you doing?"
 
 mood = gets.chomp.downcase
+binding.pry
 
-puts "Glad to hear you're #{mood}?"
+puts "Glad to hear you're #{mod}?"

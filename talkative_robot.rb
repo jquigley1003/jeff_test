@@ -1,3 +1,5 @@
+require 'pry'
+
 puts "What is your name?"
 user_name = gets.chomp
 puts "How old are you?"
@@ -6,12 +8,12 @@ user_age = gets.chomp
 puts "Hi #{user_name} who is #{user_age} years old!"
 
 initial = user_name.chars.first
-
 puts "Do you mind if I call you #{initial}?"
 future_age = 75 - user_age.to_i
 puts "You will be 75 years old in #{future_age} years."
 
 user_name.upcase!
+
 puts "Hey #{user_name}, where are you going!?"
 puts %s(Yo, "Dude", what's up?)
 
