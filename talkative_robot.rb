@@ -38,3 +38,5 @@ elsif user_moving == "no"
 else
 	puts "You didn't answer with 'yes' or 'no'!"
 end
+
+puts "This is for you, Instructor!"
