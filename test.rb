@@ -10,6 +10,6 @@ puts "Hey #{user_name}"
 puts "how are you doing?"
 
 mood = gets.chomp.downcase
-binding.pry
+binding.pry	
 
-puts "Glad to hear you're #{mod}?"
+puts "Glad to hear you're #{mood}?"
