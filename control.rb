@@ -1,0 +1,1 @@
+puts 5 > 6 ? "first response" : "default response"
