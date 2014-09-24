@@ -24,7 +24,7 @@ when user_age < 75
 	puts "You'll be 75 in #{75 - user_age} years"
 when user_age == 75
 	puts "You're 75!"
-when user_age > 75
+else
 	puts "You turned 75 #{user_age - 75} years ago."
 end
 
