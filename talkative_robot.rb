@@ -8,13 +8,8 @@ def greet_user(name, age)
 end
 
 def gender_message(gender)
-	puts "Hey, you are male." if gender == "M"
-	puts "Hey, you are female" unless gender == "M"  
-	if gender == "M"
-		puts "You are probably handsome, too!"
-	else
-		puts "You are probably beautiful, too!"
-	end
+	puts gender == "M" ? "Hey, you are a male." : "Hey, you are a female." 
+	puts gender == "M" ? "You are probably handsome, too!" : "You are probably beautiful, too!"
 end
 
 def age_based_message(age)
@@ -30,11 +25,8 @@ def age_based_message(age)
 	puts age < 100 ? "You will reach 100 in #{100 - age} years" : "You are 100+!"
 
 	future_age = 75 - age
-	if future_age > 0
-		puts "You will be 75 years old in #{future_age} years."
-	else
-		puts "You already attained that amazing age of 75!"
-	end
+	
+	puts future_age > 0 ? "You will be 75 years old in #{future_age} years." : "You already attained that amazing age of 75!"
 end
 
 def age_gender_based_message(age, gender)
@@ -42,15 +34,15 @@ def age_gender_based_message(age, gender)
 		puts "You are a young boy."
 	elsif age < 30 && gender == "F"
 		puts "You are a young girl."
-	elsif age > 30 && gender == "M"
+	elsif age >= 30 && gender == "M"
 		puts "You are a mature man."
 	else
 		puts "You are a mature woman."
 	end
 
-	if age > 100 && gender == "M"
+	if age >= 100 && gender == "M"
 		puts "Are you a great-great grandfather? \n\n"
-	elsif age > 100 && gender == "F"
+	elsif age >= 100 && gender == "F"
 		puts "Are you a great-great grandmother? \n\n"
 	end
 end
@@ -64,7 +56,7 @@ def city_state_message(name,city,state,how_long)
 	puts "So #{name} who lives in #{city}, #{state}. You have lived there #{how_long} years."
 end
 
-def moving_soon (moving)
+def moving_soon(moving)
 	if moving == "yes"
 		puts "Hope your move goes well. \n\n"
 	elsif moving == "no"
@@ -135,7 +127,7 @@ new_item = "tomato sauce"
 puts "Oh yeah, don't forget the #{new_item}."
 grocery_list.push(new_item)
 
-puts "this is the new list #{grocery_list}"
+puts "this is the new grocery list: #{grocery_list.join(", ")}"
 puts "This is the user_response hash #{user_response}"
 
 
