@@ -52,28 +52,32 @@ def first_initial(first_name)
 	puts "Do you mind if I call you #{initial}?\n\n"
 end
 
-def city_state_message(name,city,state,how_long)
+def city_state_message(name,city, state, how_long)
 	puts "So #{name} who lives in #{city}, #{state}. You have lived there #{how_long} years."
 end
 
-def moving_soon(moving)
-	if moving == "yes"
-		puts "Hope your move goes well. \n\n"
-	elsif moving == "no"
-		puts "Glad you plan to stay to make more friends!\n\n"
-	else
-		puts "You didn't answer with 'yes' or 'no'!\n\n"
-	end
+def moving_soon(answer)
+	answer == "Y" ? moving = true : moving = false
+	puts moving ? "Hope your move goes well. \n\n" : "Hope you plan to make more friends!\n\n"	
 end
 
 def finding_author(people)
 	people.reject { |human| human[:name] != "Jeff" }[0]
 end
 
+#This function will return the author hash
+def select_by_name(list_of_users,first_name)
+	if list_of_users.select { |n| n [:name] == first_name }.first
+		puts list_of_users [1]
+	else
+		puts "Author is not #{first_name}."
+	end
+end
+
 user_response ={}
 
 author = { name: "Jeff", age: 48, gender: "M", city: "Atlanta", state: "GA",
-		 years_in_state: 8, moving: "no"}
+		 years_lived: 8, moving: "no"}
 
 ask_for_info
 
@@ -112,8 +116,8 @@ puts "How many years have you lived there?"
 user_years_state = gets.chomp.to_i
 user_response.store("years_lived", user_years_state)
 
-puts "Do you plan on moving soon? (yes or no)"
-user_moving = gets.chomp.downcase
+puts "Do you plan on moving soon? (Y or N)"
+user_moving = gets.chomp.upcase!
 user_response.store("moving", user_moving)
 
 city_state_message(user_name, user_city, user_state, user_years_state)
@@ -133,10 +137,27 @@ new_item = "tomato sauce"
 puts "Oh yeah, don't forget the #{new_item}."
 grocery_list.push(new_item)
 
-puts "\nNew Grocery List:"
+puts "\nCurrent Grocery List:"
 grocery_list.map { |item| puts "Item #{grocery_list.index(item)+1} -- #{item}" }
-puts "This is the user_response hash #{user_response}"
+
+groceries = File.open("grocery_list.txt", "w")
+make_list = grocery_list.join(", ")
+groceries.puts make_list
+groceries.close
+
+new_grocery_list = IO.read("grocery_list.txt").chomp.split(", ")
+puts "\nWhat would you like to add to the grocery list?"
+another_item = gets.chomp
+new_grocery_list.unshift(another_item)
+IO.write("new_grocery_list.txt",new_grocery_list.join(", "))
+
+puts "\nUpdated Grocery List:"
+new_grocery_list.map { |item| puts "Item #{new_grocery_list.index(item)+1} -- #{item}" }
 
 people = [user_response, author]
-puts "Author of this program is: #{finding_author(people)[:name]}"
+puts "\nBy the way, the author of this program is: #{finding_author(people)[:name]}"
+
+puts "\nType a first name to guess the author!"
+author_first_name = gets.chomp.capitalize!
+select_by_name(people, author_first_name)
 
