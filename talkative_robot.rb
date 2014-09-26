@@ -66,10 +66,16 @@ def moving_soon(moving)
 	end
 end
 
-
-ask_for_info
+def finding_author(people)
+	people.reject { |human| human[:name] != "Jeff" }[0]
+end
 
 user_response ={}
+
+author = { name: "Jeff", age: 48, gender: "M", city: "Atlanta", state: "GA",
+		 years_in_state: 8, moving: "no"}
+
+ask_for_info
 
 puts "What is your name?"
 user_name = gets.chomp
@@ -127,9 +133,10 @@ new_item = "tomato sauce"
 puts "Oh yeah, don't forget the #{new_item}."
 grocery_list.push(new_item)
 
-puts "this is the new grocery list: #{grocery_list.join(", ")}"
+puts "\nNew Grocery List:"
+grocery_list.map { |item| puts "Item #{grocery_list.index(item)+1} -- #{item}" }
 puts "This is the user_response hash #{user_response}"
 
-
-
+people = [user_response, author]
+puts "Author of this program is: #{finding_author(people)[:name]}"
 
