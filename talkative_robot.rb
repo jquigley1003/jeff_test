@@ -157,3 +157,14 @@ puts "Type a first name to guess the author!"
 author_first_name = gets.chomp.capitalize!
 select_by_name(people, author_first_name)
 
+puts "Let's create a CSV file with your grocery list."
+
+require "csv"
+CSV.open("groceries.csv", "w") do |csv|
+	csv << ["Item Number", "Item Name"]
+	new_grocery_list.each_index do |item|
+		csv << ["#{item+1}", new_grocery_list[item]]
+	end
+end
+
+
