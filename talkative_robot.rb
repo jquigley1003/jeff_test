@@ -3,13 +3,13 @@ require "csv"
 
 class User
 	def initialize(args)
-		@name = args[:name]
-		@age = args[:age]
-		@gender = args[:gender]
-		@city = args[:city]
-		@state = args[:state]
+		@name 					= args[:name]
+		@age 						= args[:age]
+		@gender 				= args[:gender]
+		@city 					= args[:city]
+		@state 					= args[:state]
 		@years_in_state = args[:years_in_state]
-		@moving = args[:moving]
+		@moving 				= args[:moving]
 	end
 
 
@@ -75,40 +75,40 @@ class User
 
 	def age_based_message
 		case
-		when @age < 75
-			puts "You'll be 75 in #{75 - @age} years"
-		when @age == 75
+		when age < 75
+			puts "You'll be 75 in #{75 - age} years"
+		when age == 75
 			puts "You're 75!"
 		else
-			puts "You turned 75 #{@age - 75} years ago."
+			puts "You turned 75 #{age - 75} years ago."
 		end
 
-		puts @age < 100 ? "You will reach 100 in #{100 - @age} years" : "You are 100+!"
+		puts age < 100 ? "You will reach 100 in #{100 - age} years" : "You are 100+!"
 
-		future_age = 75 - @age
+		future_age = 75 - age
 		
 		puts future_age > 0 ? "You will be 75 years old in #{future_age} years." : "You already attained that amazing age of 75!"
 	end
 
 	def gender_based_message
-		puts @gender == "M" ? "Hey, you are a male." : "Hey, you are a female." 
-		puts @gender == "M" ? "You are probably handsome, too!" : "You are probably beautiful, too!"
+		puts male? ? "Hey, you are a male." : "Hey, you are a female." 
+		puts male? ? "You are probably handsome, too!" : "You are probably beautiful, too!"
 	end
 
 	def age_gender_based_message
-		if @age < 30 && @gender == "M"
+		if young? && male?
 			puts "You are a young boy."
-		elsif @age < 30 && @gender == "F"
+		elsif young? && female?
 			puts "You are a young girl."
-		elsif @age >= 30 && @gender == "M"
+		elsif age >= 30 && @gender == "M"
 			puts "You are a mature man."
 		else
 			puts "You are a mature woman."
 		end
 
-		if @age >= 100 && @gender == "M"
+		if age >= 100 && @gender == "M"
 			puts "Are you a great-great grandfather?"
-		elsif @age >= 100 && @gender == "F"
+		elsif age >= 100 && @gender == "F"
 			puts "Are you a great-great grandmother?"
 		end
 	end
@@ -124,6 +124,24 @@ class User
 	def moving_soon
 		puts @moving == "Y" ? "Hope your move goes well." : "Hope you plan to make more friends!"	
 	end
+
+	private
+
+		def male?
+			gender == "M" || gender == "Male"
+		end
+
+		def female?
+			gender == "F" || gender == "Female"
+		end
+
+		def old?
+			age >= 100
+		end
+
+		def young?
+			age <= 30
+		end
 
 end
 
